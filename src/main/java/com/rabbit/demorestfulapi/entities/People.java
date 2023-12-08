@@ -1,5 +1,6 @@
 package com.rabbit.demorestfulapi.entities;
 
+import com.rabbit.demorestfulapi.dto.PeopleRequestDTO;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -21,6 +22,12 @@ import lombok.Setter;
 @NoArgsConstructor
 @EqualsAndHashCode(of = "id")
 public class People {
+	public People(PeopleRequestDTO peopleRequestDTO){
+		this.peopleName = peopleRequestDTO.peopleName();
+		this.email = peopleRequestDTO.email();
+		this.department = peopleRequestDTO.department();
+	}
+
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
