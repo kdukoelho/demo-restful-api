@@ -18,8 +18,8 @@ public class PeopleController {
 	private PeopleRepository repository;
 	@GetMapping
 	public List<PeopleResponseDTO> getPeoples() {
-		
-		List<PeopleResponseDTO> productList = repository.findAll().stream().map(PeopleResponseDTO::new);
+
+		List<PeopleResponseDTO> productList = repository.findAll().stream().map(PeopleResponseDTO::new).toList();
 		
 		return productList;
 	}
