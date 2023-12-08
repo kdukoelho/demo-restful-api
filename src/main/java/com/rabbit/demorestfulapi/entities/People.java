@@ -7,10 +7,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 @Table(name="tb_peoples")
 @Entity
@@ -18,6 +15,7 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@EqualsAndHashCode(of = "id")
 public class People {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -26,6 +24,6 @@ public class People {
 	private String email;
 	
 	@ManyToOne
-	@JoinColumn(name="departmentId")
+	@JoinColumn(name="department_id")
 	private Department department;
 }
