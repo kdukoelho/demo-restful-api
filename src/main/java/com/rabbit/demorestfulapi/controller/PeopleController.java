@@ -20,27 +20,45 @@ public class PeopleController {
 	@CrossOrigin(origins = "http://localhost:8080", allowedHeaders =  "*")
 	@PostMapping
 	public void postPeople(@RequestBody PeopleRequestDTO peopleRequestDTO){
-		People people = new People(peopleRequestDTO);
-		repository.save(people);
+		try {
+			People people = new People(peopleRequestDTO);
+			repository.save(people);
+		} catch(Exception ex){
+			System.out.println(ex.getMessage());
+		}
 	}
 
 	@CrossOrigin(origins = "http://localhost:8080", allowedHeaders =  "*")
 	@GetMapping
 	public List<PeopleResponseDTO> getPeoplesList() {
-		List<PeopleResponseDTO> productList = repository.findAll().stream().map(PeopleResponseDTO::new).toList();
-		return productList;
+		try {
+			List<PeopleResponseDTO> productList = repository.findAll().stream().map(PeopleResponseDTO::new).toList();
+			return productList;
+		} catch(Exception ex){
+			System.out.println(ex.getMessage());
+			return null;
+		}
 	}
 
 	@CrossOrigin(origins = "http://localhost:8080", allowedHeaders = "*")
 	@GetMapping("/{id}")
 	public PeopleResponseDTO getPeopleById(@PathVariable Long id){
-		People people = repository.findById(id).get();
-		return new PeopleResponseDTO(people);
+		try {
+			People people = repository.findById(id).get();
+			return new PeopleResponseDTO(people);
+		} catch(Exception ex){
+			System.out.println(ex.getMessage());
+			return null;
+		}
 	}
 
 	@CrossOrigin(origins = "http://localhost:8080", allowedHeaders = "*")
 	@DeleteMapping("/{id}")
 	public void deletePeopleById(@PathVariable long id){
+		try {
 		repository.deleteById(id);
+		} catch (Exception ex) {
+			System.out.println(ex.getMessage());
+		}
 	}
 }
