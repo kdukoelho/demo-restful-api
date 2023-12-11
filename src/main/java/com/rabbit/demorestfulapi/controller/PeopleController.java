@@ -37,4 +37,10 @@ public class PeopleController {
 		People people = repository.findById(id).get();
 		return new PeopleResponseDTO(people);
 	}
+
+	@CrossOrigin(origins = "http://localhost:8080", allowedHeaders = "*")
+	@DeleteMapping("/{id}")
+	public void deletePeopleById(@PathVariable long id){
+		repository.deleteById(id);
+	}
 }
