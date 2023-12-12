@@ -2,5 +2,5 @@ package com.rabbit.demorestfulapi.dto;
 
 import com.rabbit.demorestfulapi.entities.Department;
 
-public record PeopleRequestDTO(String peopleName, String email, Department department) {
+public record EmployeeRequestDTO(String employeeName, String email, Department department) {
 }

@@ -2,29 +2,29 @@ package com.rabbit.demorestfulapi.controller;
 
 import java.util.List;
 
-import com.rabbit.demorestfulapi.dto.PeopleRequestDTO;
-import com.rabbit.demorestfulapi.entities.People;
-import jakarta.persistence.PostUpdate;
+import com.rabbit.demorestfulapi.dto.EmployeeRequestDTO;
+import com.rabbit.demorestfulapi.entities.Employee;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.rabbit.demorestfulapi.dto.PeopleResponseDTO;
-import com.rabbit.demorestfulapi.repository.PeopleRepository;
+import com.rabbit.demorestfulapi.dto.EmployeeResponseDTO;
+import com.rabbit.demorestfulapi.repository.EmployeeRepository;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping(value = "/peoples")
-public class PeopleController {
+@RequestMapping(value = "/employees")
+public class EmployeeController {
 
 	@Autowired
-	private PeopleRepository repository;
+	private EmployeeRepository repository;
 
 	@CrossOrigin(origins = "http://localhost:8080", allowedHeaders =  "*")
 	@PostMapping
-	public People postPeople(@RequestBody PeopleRequestDTO peopleRequestDTO){
+	public Employee postEmployee(@RequestBody EmployeeRequestDTO employeeRequestDTO){
 		try {
-			People people = new People(peopleRequestDTO);
-			repository.save(people);
-			return people;
+			Employee employee = new Employee(employeeRequestDTO);
+			repository.save(employee);
+			return employee;
 		} catch(Exception ex){
 			System.out.println(ex.getMessage());
 			return null;
@@ -33,12 +33,12 @@ public class PeopleController {
 
 	@CrossOrigin(origins = "http://localhost:8080", allowedHeaders = "*")
 	@PostMapping("/{id}")
-	public PeopleResponseDTO updatePeople(@RequestBody PeopleRequestDTO peopleRequestDTO, @PathVariable Long id){
+	public EmployeeResponseDTO updateEmployee(@RequestBody EmployeeRequestDTO employeeRequestDTO, @PathVariable Long id){
 		try {
-			People people = new People(peopleRequestDTO);
-			people.setId(id);
-			repository.save(people);
-			return new PeopleResponseDTO(people);
+			Employee employee = new Employee(employeeRequestDTO);
+			employee.setId(id);
+			repository.save(employee);
+			return new EmployeeResponseDTO(employee);
 		} catch(Exception ex){
 			System.out.println(ex.getMessage());
 			return null;
@@ -48,10 +48,9 @@ public class PeopleController {
 
 	@CrossOrigin(origins = "http://localhost:8080", allowedHeaders =  "*")
 	@GetMapping
-	public List<PeopleResponseDTO> getPeoplesList() {
+	public List<EmployeeResponseDTO> getEmployeesList() {
 		try {
-			List<PeopleResponseDTO> productList = repository.findAll().stream().map(PeopleResponseDTO::new).toList();
-			return productList;
+			return repository.findAll().stream().map(EmployeeResponseDTO::new).toList();
 		} catch(Exception ex){
 			System.out.println(ex.getMessage());
 			return null;
@@ -60,10 +59,10 @@ public class PeopleController {
 
 	@CrossOrigin(origins = "http://localhost:8080", allowedHeaders = "*")
 	@GetMapping("/{id}")
-	public PeopleResponseDTO getPeopleById(@PathVariable Long id){
+	public EmployeeResponseDTO getEmployeeById(@PathVariable Long id){
 		try {
-			People people = repository.findById(id).get();
-			return new PeopleResponseDTO(people);
+			Employee employee = repository.findById(id).get();
+			return new EmployeeResponseDTO(employee);
 		} catch(Exception ex){
 			System.out.println(ex.getMessage());
 			return null;
@@ -72,7 +71,7 @@ public class PeopleController {
 
 	@CrossOrigin(origins = "http://localhost:8080", allowedHeaders = "*")
 	@DeleteMapping("/{id}")
-	public String deletePeopleById(@PathVariable long id){
+	public String deleteEmployeeById(@PathVariable long id){
 		try {
 		repository.deleteById(id);
 		return "deleted";
