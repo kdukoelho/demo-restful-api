@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.rabbit.demorestfulapi.dto.PeopleRequestDTO;
 import com.rabbit.demorestfulapi.entities.People;
+import jakarta.persistence.PostUpdate;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.rabbit.demorestfulapi.dto.PeopleResponseDTO;
@@ -19,14 +20,31 @@ public class PeopleController {
 
 	@CrossOrigin(origins = "http://localhost:8080", allowedHeaders =  "*")
 	@PostMapping
-	public void postPeople(@RequestBody PeopleRequestDTO peopleRequestDTO){
+	public People postPeople(@RequestBody PeopleRequestDTO peopleRequestDTO){
 		try {
 			People people = new People(peopleRequestDTO);
 			repository.save(people);
+			return people;
 		} catch(Exception ex){
 			System.out.println(ex.getMessage());
+			return null;
 		}
 	}
+
+	@CrossOrigin(origins = "http://localhost:8080", allowedHeaders = "*")
+	@PostMapping("/{id}")
+	public PeopleResponseDTO updatePeople(@RequestBody PeopleRequestDTO peopleRequestDTO, @PathVariable Long id){
+		try {
+			People people = new People(peopleRequestDTO);
+			people.setId(id);
+			repository.save(people);
+			return new PeopleResponseDTO(people);
+		} catch(Exception ex){
+			System.out.println(ex.getMessage());
+			return null;
+		}
+	}
+
 
 	@CrossOrigin(origins = "http://localhost:8080", allowedHeaders =  "*")
 	@GetMapping
@@ -54,11 +72,13 @@ public class PeopleController {
 
 	@CrossOrigin(origins = "http://localhost:8080", allowedHeaders = "*")
 	@DeleteMapping("/{id}")
-	public void deletePeopleById(@PathVariable long id){
+	public String deletePeopleById(@PathVariable long id){
 		try {
 		repository.deleteById(id);
+		return "deleted";
 		} catch (Exception ex) {
 			System.out.println(ex.getMessage());
+			return null;
 		}
 	}
 }
