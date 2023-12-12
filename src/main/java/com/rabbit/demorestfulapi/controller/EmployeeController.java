@@ -71,10 +71,10 @@ public class EmployeeController {
 
 	@CrossOrigin(origins = "http://localhost:8080", allowedHeaders = "*")
 	@DeleteMapping("/{id}")
-	public String deleteEmployeeById(@PathVariable long id){
+	public String deleteEmployeeById(@PathVariable long id) {
 		try {
-		repository.deleteById(id);
-		return "deleted";
+			repository.deleteById(id);
+			return "deleted";
 		} catch (Exception ex) {
 			System.out.println(ex.getMessage());
 			return null;
