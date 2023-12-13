@@ -4,10 +4,7 @@ package com.rabbit.demorestfulapi.controller;
 import com.rabbit.demorestfulapi.dto.DepartmentResponseDTO;
 import com.rabbit.demorestfulapi.repository.DepartmentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -22,4 +19,11 @@ public class DepartmentController {
     public List<DepartmentResponseDTO> getDepartmentsList(){
         return repository.findAll().stream().map(DepartmentResponseDTO::new).toList();
     }
+
+    @GetMapping("/{id}")
+    @CrossOrigin(origins = "http://localhost:8080", allowedHeaders = "*")
+    public DepartmentResponseDTO getDepartmentById(@PathVariable Long id){
+        return new DepartmentResponseDTO(repository.findById(id).get());
+    }
+
 }
