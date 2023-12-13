@@ -50,4 +50,16 @@ public class DepartmentController {
             return null;
         }
     }
+
+    @DeleteMapping("/{id}")
+    @CrossOrigin(origins = "http://localhost:8080", allowedHeaders = "*")
+    public String deleteDepartment(@PathVariable Long id){
+        try{
+            repository.deleteById(id);
+            return "deleted";
+        } catch(Exception ex){
+            System.out.println(ex.getMessage());
+            return null;
+        }
+    }
 }
