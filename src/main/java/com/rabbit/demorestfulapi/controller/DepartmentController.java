@@ -17,7 +17,12 @@ public class DepartmentController {
     @GetMapping
     @CrossOrigin(origins = "http://localhost:8080", allowedHeaders = "*")
     public List<DepartmentResponseDTO> getDepartmentsList(){
-        return repository.findAll().stream().map(DepartmentResponseDTO::new).toList();
+        try{
+            return repository.findAll().stream().map(DepartmentResponseDTO::new).toList();
+        } catch(Exception ex){
+            System.out.println(ex.getMessage());
+            return null;
+        }
     }
 
     @GetMapping("/{id}")
