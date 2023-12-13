@@ -1,7 +1,9 @@
 package com.rabbit.demorestfulapi.controller;
 
 
+import com.rabbit.demorestfulapi.dto.DepartmentRequestDTO;
 import com.rabbit.demorestfulapi.dto.DepartmentResponseDTO;
+import com.rabbit.demorestfulapi.entities.Department;
 import com.rabbit.demorestfulapi.repository.DepartmentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -27,8 +29,25 @@ public class DepartmentController {
 
     @GetMapping("/{id}")
     @CrossOrigin(origins = "http://localhost:8080", allowedHeaders = "*")
-    public DepartmentResponseDTO getDepartmentById(@PathVariable Long id){
-        return new DepartmentResponseDTO(repository.findById(id).get());
+    public DepartmentResponseDTO getDepartmentById(@PathVariable Long id) {
+        try {
+            return new DepartmentResponseDTO(repository.findById(id).get());
+        } catch(Exception ex){
+            System.out.println(ex.getMessage());
+            return null;
+        }
     }
 
+    @PostMapping
+    @CrossOrigin(origins = "http://localhost:8080", allowedHeaders = "*")
+    public DepartmentResponseDTO postDepartment(@RequestBody DepartmentRequestDTO departmentRequestDTO){
+        try{
+            Department department = new Department(departmentRequestDTO);
+            repository.save(department);
+            return new DepartmentResponseDTO(department);
+        } catch(Exception ex){
+            System.out.println(ex.getMessage());
+            return null;
+        }
+    }
 }
