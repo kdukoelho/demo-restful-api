@@ -62,4 +62,18 @@ public class DepartmentController {
             return null;
         }
     }
+
+    @PostMapping("/{id}")
+    @CrossOrigin(origins = "http://localhost:8080", allowedHeaders = "*")
+    public DepartmentResponseDTO updateDepartment(@RequestBody DepartmentRequestDTO departmentRequestDTO, @PathVariable Long id){
+        try{
+            Department department = new Department(departmentRequestDTO);
+            department.setId(id);
+            repository.save(department);
+            return new DepartmentResponseDTO(department);
+        } catch(Exception ex){
+            System.out.println(ex.getMessage());
+            return null;
+        }
+    }
 }
