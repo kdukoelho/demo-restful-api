@@ -20,11 +20,11 @@ public class EmployeeController {
 
 	@CrossOrigin(origins = "http://localhost:8080", allowedHeaders =  "*")
 	@PostMapping
-	public Employee postEmployee(@RequestBody EmployeeRequestDTO employeeRequestDTO){
+	public EmployeeResponseDTO postEmployee(@RequestBody EmployeeRequestDTO employeeRequestDTO){
 		try {
 			Employee employee = new Employee(employeeRequestDTO);
 			repository.save(employee);
-			return employee;
+			return new EmployeeResponseDTO(employee);
 		} catch(Exception ex){
 			System.out.println(ex.getMessage());
 			return null;
