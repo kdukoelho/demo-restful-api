@@ -1,14 +1,15 @@
 
 # RESTful API
-This application offer in a web url, informations of a department and the employees of each department. It uses the following frameworks:
+This application offer in a web url, an API that can perform CRUD operations in all your tables. It uses the followings frameworks:
 <ul>
  <li>Java Spring Boot: To create, and run the API;</li>
  <li>Java Persistence Annotation: To do the database manipulation;</li>
  <li>Lombok: To facilitates the creation of common codes (getters, setters).</li>
 </ul>
-It uses MySQL as the Database Management System.
+It uses MySQL as the DBMS.
+
 ## Modeling
-The application uses the Java Persistence Annotation to do the data base manipulation, the following UML Diagrams describe the classes structure and the database modeling.
+The application uses the Java Persistence Annotation to do the data base manipulation and the Object-Relational Mapping (ORM), the following UML diagrams describe the classes structure and the database modeling.
 
 ### Entity Relationship Diagram
 In the database scheme, the table "tb_employees" contains a stranger key row to refer the department primary key.
@@ -67,15 +68,13 @@ class Department{
 <ol>
 	<li>To run this application, you need to open a MySQL connection in the port 3030 on your localhost and create a database called "restful_api_demo".</li>
 	<li>Clone the project to your directory:  <code>git clone https://github.com/kdukoelho/demo-restful-api.git</code></li>
-	<li>If you want, you can run the file import.sql located in <code>src/main/resources/import.sql</code> to populate the database.</li>
-	<li>Now, run the DemoRestfulApiApplication.java, located in <code>src/main/java/com/rabbit/demorestfulapi/DemoRestfulApiApplication.java"</code></li>
+	<li>Run the DemoRestfulApiApplication.java, located in <code>src/main/java/com/rabbit/demorestfulapi/DemoRestfulApiApplication.java"</code></li>
 </ol>
 
-After that the API will be available in the URL: <b>http://localhost:8080/peoples</b>
+After that the API will be available in the URL: <b>http://localhost:8080/peoples</b>.
 
 ## Operations
-
-In this application, we can perform the CRUD operations employees table.
+ It is possible to perform CRUD operations in all the tables.
 
 
 ### CREATE
