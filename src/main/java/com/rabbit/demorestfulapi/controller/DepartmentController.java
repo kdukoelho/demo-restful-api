@@ -17,7 +17,6 @@ public class DepartmentController {
     DepartmentRepository repository;
 
     @GetMapping
-    @CrossOrigin(origins = "http://localhost:8080", allowedHeaders = "*")
     public List<DepartmentResponseDTO> getDepartmentsList(){
         try{
             return repository.findAll().stream().map(DepartmentResponseDTO::new).toList();
@@ -28,7 +27,6 @@ public class DepartmentController {
     }
 
     @GetMapping("/{id}")
-    @CrossOrigin(origins = "http://localhost:8080", allowedHeaders = "*")
     public DepartmentResponseDTO getDepartmentById(@PathVariable Long id) {
         try {
             return new DepartmentResponseDTO(repository.findById(id).get());
@@ -39,7 +37,6 @@ public class DepartmentController {
     }
 
     @PostMapping
-    @CrossOrigin(origins = "http://localhost:8080", allowedHeaders = "*")
     public DepartmentResponseDTO postDepartment(@RequestBody DepartmentRequestDTO departmentRequestDTO){
         try{
             Department department = new Department(departmentRequestDTO);
@@ -52,7 +49,6 @@ public class DepartmentController {
     }
 
     @DeleteMapping("/{id}")
-    @CrossOrigin(origins = "http://localhost:8080", allowedHeaders = "*")
     public String deleteDepartment(@PathVariable Long id){
         try{
             repository.deleteById(id);
@@ -64,7 +60,6 @@ public class DepartmentController {
     }
 
     @PostMapping("/{id}")
-    @CrossOrigin(origins = "http://localhost:8080", allowedHeaders = "*")
     public DepartmentResponseDTO updateDepartment(@RequestBody DepartmentRequestDTO departmentRequestDTO, @PathVariable Long id){
         try{
             Department department = new Department(departmentRequestDTO);

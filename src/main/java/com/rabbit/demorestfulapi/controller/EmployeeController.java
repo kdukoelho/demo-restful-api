@@ -18,7 +18,6 @@ public class EmployeeController {
 	@Autowired
 	private EmployeeRepository repository;
 
-	@CrossOrigin(origins = "http://localhost:8080", allowedHeaders =  "*")
 	@PostMapping
 	public EmployeeResponseDTO postEmployee(@RequestBody EmployeeRequestDTO employeeRequestDTO){
 		try {
@@ -31,7 +30,6 @@ public class EmployeeController {
 		}
 	}
 
-	@CrossOrigin(origins = "http://localhost:8080", allowedHeaders = "*")
 	@PostMapping("/{id}")
 	public EmployeeResponseDTO updateEmployee(@RequestBody EmployeeRequestDTO employeeRequestDTO, @PathVariable Long id){
 		try {
@@ -45,8 +43,6 @@ public class EmployeeController {
 		}
 	}
 
-
-	@CrossOrigin(origins = "http://localhost:8080", allowedHeaders =  "*")
 	@GetMapping
 	public List<EmployeeResponseDTO> getEmployeesList() {
 		try {
@@ -57,7 +53,6 @@ public class EmployeeController {
 		}
 	}
 
-	@CrossOrigin(origins = "http://localhost:8080", allowedHeaders = "*")
 	@GetMapping("/{id}")
 	public EmployeeResponseDTO getEmployeeById(@PathVariable Long id){
 		try {
@@ -69,7 +64,6 @@ public class EmployeeController {
 		}
 	}
 
-	@CrossOrigin(origins = "http://localhost:8080", allowedHeaders = "*")
 	@DeleteMapping("/{id}")
 	public String deleteEmployeeById(@PathVariable long id) {
 		try {
