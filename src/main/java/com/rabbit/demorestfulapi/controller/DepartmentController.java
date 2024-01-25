@@ -59,7 +59,7 @@ public class DepartmentController {
         }
     }
 
-    @PostMapping("/{id}")
+    @PutMapping("/{id}")
     public DepartmentResponseDTO updateDepartment(@RequestBody DepartmentRequestDTO departmentRequestDTO, @PathVariable Long id){
         try{
             Department department = new Department(departmentRequestDTO);
