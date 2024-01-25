@@ -30,7 +30,7 @@ public class EmployeeController {
 		}
 	}
 
-	@PostMapping("/{id}")
+	@PutMapping("/{id}")
 	public EmployeeResponseDTO updateEmployee(@RequestBody EmployeeRequestDTO employeeRequestDTO, @PathVariable Long id){
 		try {
 			Employee employee = new Employee(employeeRequestDTO);
