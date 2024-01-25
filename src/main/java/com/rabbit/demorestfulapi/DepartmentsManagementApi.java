@@ -4,10 +4,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class DemoRestfulApiApplication {
+public class DepartmentsManagementApi {
 
 	public static void main(String[] args) {
-		SpringApplication.run(DemoRestfulApiApplication.class, args);
+		SpringApplication.run(DepartmentsManagementApi.class, args);
 	}
 
 }
