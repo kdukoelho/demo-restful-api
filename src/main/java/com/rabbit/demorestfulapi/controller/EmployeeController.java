@@ -19,7 +19,7 @@ public class EmployeeController {
 	private EmployeeRepository repository;
 
 	@PostMapping
-	public EmployeeResponseDTO postEmployee(@RequestBody EmployeeRequestDTO employeeRequestDTO){
+	public EmployeeResponseDTO create(@RequestBody EmployeeRequestDTO employeeRequestDTO){
 		try {
 			Employee employee = new Employee(employeeRequestDTO);
 			repository.save(employee);
@@ -31,7 +31,7 @@ public class EmployeeController {
 	}
 
 	@PutMapping("/{id}")
-	public EmployeeResponseDTO updateEmployee(@RequestBody EmployeeRequestDTO employeeRequestDTO, @PathVariable Long id){
+	public EmployeeResponseDTO update(@RequestBody EmployeeRequestDTO employeeRequestDTO, @PathVariable Long id){
 		try {
 			Employee employee = new Employee(employeeRequestDTO);
 			employee.setId(id);

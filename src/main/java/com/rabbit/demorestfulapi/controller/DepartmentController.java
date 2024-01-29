@@ -37,7 +37,7 @@ public class DepartmentController {
     }
 
     @PostMapping
-    public DepartmentResponseDTO postDepartment(@RequestBody DepartmentRequestDTO departmentRequestDTO){
+    public DepartmentResponseDTO post(@RequestBody DepartmentRequestDTO departmentRequestDTO){
         try{
             Department department = new Department(departmentRequestDTO);
             repository.save(department);
@@ -49,7 +49,7 @@ public class DepartmentController {
     }
 
     @DeleteMapping("/{id}")
-    public String deleteDepartment(@PathVariable Long id){
+    public String delete(@PathVariable Long id){
         try{
             repository.deleteById(id);
             return "deleted";
@@ -60,7 +60,7 @@ public class DepartmentController {
     }
 
     @PutMapping("/{id}")
-    public DepartmentResponseDTO updateDepartment(@RequestBody DepartmentRequestDTO departmentRequestDTO, @PathVariable Long id){
+    public DepartmentResponseDTO update(@RequestBody DepartmentRequestDTO departmentRequestDTO, @PathVariable Long id){
         try{
             Department department = new Department(departmentRequestDTO);
             department.setId(id);
